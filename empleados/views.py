@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from . models import Empleado
-from . forms import Empleado
+
 
 
 # Create your views here.

@@ -1,8 +1,25 @@
 from django.db import models
 
+# Definir una tupla con los valores del select genero_empleado
+generos = (
+    ("Masculino", "Masculino"),
+    ("Femenino", "Femenino"),
+    ("Otro", "Otro"),
+)
+
 
 class Empleado(models.Model):
-    nombre = models.CharField(max_length=200)
-    apellido = models.CharField(max_length=100)
-    email = models.EmailField(max_length=50)
-    edad = models.IntegerField(max_length=2)
+    nombre_empleado = models.CharField(max_length=200)
+    apellido_empleado = models.CharField(max_length=100)
+    email_empleado = models.EmailField(max_length=50)
+    edad_empleado = models.IntegerField()
+    genero_empleado = models.CharField(max_length=80, choices=generos)
+    foto_empleado = models.ImageField(
+        upload_to='fotos_empleados/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    """ la clase Meta dentro de un modelo se utiliza para proporcionar metadatos adicionales sobre el modelo."""
+    class Meta:
+        db_table = "empleados"
+        ordering = ['-created_at']

@@ -1,0 +1,22 @@
+body {
+  background-color: #f0f0f0 !important;
+}
+form {
+  display: flex;
+  justify-content: center;
+}
+.form-check-input[type="radio"] {
+  font-size: 20px !important;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #09c046 !important;
+  border-color: #09c046 !important;
+}
+.form-check-input:checked {
+  background-color: #09c046 !important;
+  border-color: #09c046 !important;
+}
+hr {
+  color: #09c046 !important;
+}
