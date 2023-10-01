@@ -68,13 +68,20 @@
 11. Crear una clase en models.py la cual reprtesentara mi tabla en BD,(bd_django) preferiblemente los modelos
     se declaran en singular
 
-        class Libro(models.Model):
-        titulo = models.CharField(max_length=200)
-        autor = models.CharField(max_length=100)
-        precio = models.DecimalField(max_digits=10, decimal_places=2)
-        created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+        class Empleado(models.Model):
+                nombre_empleado = models.CharField(max_length=200)
+                apellido_empleado = models.CharField(max_length=100)
+                email_empleado = models.EmailField(max_length=50)
+                edad_empleado = models.IntegerField()
+                genero_empleado = models.CharField(max_length=80, choices=generos)
+                salario_empleado = models.DecimalField(
+                        max_digits=10, decimal_places=2, null=True, blank=True)
+                foto_empleado = models.ImageField(
+                        upload_to='fotos_empleados/', null=True, blank=True)
+                created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+                updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-12. crear la Base de Datos (bd_django) en MySQL
+12. crear la Base de Datos (bd_django_mysql) en MySQL
 
 13. Crear las migraciones que estan en mi modelo
 
@@ -99,26 +106,29 @@
         }
         `
 
-16. En el archivo views.py de mi apliación crear una vista (función)
-    from django.http import HttpResponse
-
-    def inicio(resquest):
-    return HttpResponse("Hola Mundo", status=200)
-
-17. Crear el archivo urls.py en la aplicación (bd_django_mysql)
+16. Crear el archivo urls.py en la aplicación (bd_django_mysql)
     from django.urls import path
     from . import views
 
-    urlpatterns = [
-    path('', views.inicio, name='inicio'),
-    ]
+        urlpatterns = [
+                path('', views.inicio, name='inicio'),
+                path('registrar_empleado/', views.registrar_empleado,
+                        name='registrar_empleado'),
+                path('empleados/', views.listar_empleados, name='listar_empleados'),
+        ]
 
-18. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
+17. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
     from django.urls import path, include
-    urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('libros/', include('crud_libros.urls')),
-    ]
+
+        urlpatterns = [
+                path('admin/', admin.site.urls),
+                path('libros/', include('empleados.urls')),
+        ]
+
+18. Crear las migraciones y correrlas
+
+        python manage.py makemigrations -> Creando migraciones
+        python manage.py migrate         -> Correr migraciones
 
 19. Revisar la consola y visitar la URL http://127.0.0.1:8000
 
@@ -129,6 +139,15 @@
 
 22. Correr archivo requirement.txt
     pip install -r requirements.txt
+
+#### Resultado final
+
+#####Formulario para registrar Empleado
+![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/registrar-empleado-con-django-crud-urian-viera.png)
+
+##### Lista de Empleados
+
+![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/lista-de-empleados-crud-django-urian-viera.png)
 
 ### Expresiones de Gratitud 🎁
 
