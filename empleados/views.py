@@ -3,27 +3,51 @@ from django.contrib import messages
 from . models import Empleado
 
 
-
 # Create your views here.
 
 
 def inicio(request):
-    return render(request, 'form_empleado.html')
+    opciones_edad = [(str(edad), str(edad)) for edad in range(18, 51)]
+    contexto = {
+        'opciones_edad': opciones_edad,
+    }
+    return render(request, 'form_empleado.html', contexto)
 
 
-def process_form(request):
+def registrar_empleado(request):
+    context = {}  # Inicializa un diccionario de contexto
     if request.method == 'POST':
-        titulo = request.POST.get('titulo')
-        autor = request.POST.get('autor')
-        precio = request.POST.get('precio')
+        nombre = request.POST.get('nombre_empleado')
+        apellido = request.POST.get('apellido_empleado')
+        email = request.POST.get('email_empleado')
+        edad = request.POST.get('edad_empleado')
+        genero = request.POST.get('genero_empleado')
+        salario = request.POST.get('salario_empleado')
 
-        nuevo_libro = Empleado(titulo=titulo, autor=autor, precio=precio)
-        nuevo_libro.save()
+        # Procesa los datos y guarda en la base de datos (ejemplo)
+        empleado = Empleado(
+            nombre_empleado=nombre,
+            apellido_empleado=apellido,
+            email_empleado=email,
+            edad_empleado=edad,
+            genero_empleado=genero,
+            salario_empleado=salario,
+        )
+        empleado.save()
 
-        messages.success(
-            request, "Felicitaciones, el libro fue registrado correctamente")
+        # Redirige al usuario a otra página (puede ser una página de éxito)
+        # Reemplaza 'pagina_exito' con la URL deseada
+        return redirect('inicio')
 
-        return redirect('list_libros')
+    # Si no se ha enviado el formulario, simplemente renderiza la plantilla con el formulario vacío
+    return render(request, 'formulario_libro.html', context)
 
-    # Renderiza el formulario en caso de método GET
-    return render(request, 'formulario_libro.html')
+
+def listar_empleados(request):
+    empleados = Empleado.objects.all()  # Obtiene todos los registros de empleados
+
+    contexto = {
+        'empleados': empleados,
+    }
+
+    return render(request, 'lista_empleados.html', contexto)

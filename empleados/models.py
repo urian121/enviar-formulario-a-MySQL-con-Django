@@ -14,6 +14,8 @@ class Empleado(models.Model):
     email_empleado = models.EmailField(max_length=50)
     edad_empleado = models.IntegerField()
     genero_empleado = models.CharField(max_length=80, choices=generos)
+    salario_empleado = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     foto_empleado = models.ImageField(
         upload_to='fotos_empleados/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
