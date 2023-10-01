@@ -1,3 +1,5 @@
+import uuid
+import os
 from django.db import models
 
 # Definir una tupla con los valores del select genero_empleado
@@ -20,6 +22,20 @@ class Empleado(models.Model):
         upload_to='fotos_empleados/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Genera un nombre único para el archivo utilizando UUID
+        nombre_unico = f'{uuid.uuid4()}{self.get_extension()}'
+
+        # Asigna el nombre único al campo de la imagen
+        self.foto_empleado.name = nombre_unico
+
+        super().save(*args, **kwargs)
+
+    def get_extension(self):
+        # Obtiene la extensión del archivo original
+        extension = os.path.splitext(self.foto_empleado.name)[1]
+        return extension
 
     """ la clase Meta dentro de un modelo se utiliza para proporcionar metadatos adicionales sobre el modelo."""
     class Meta:

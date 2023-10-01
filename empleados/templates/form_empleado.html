@@ -59,6 +59,7 @@
           type="radio"
           name="genero_empleado"
           id="Masculino"
+          value="Masculino"
           checked />
         <label class="form-check-label" for="Masculino"> Masculino </label>
       </div>
@@ -67,6 +68,7 @@
           class="form-check-input"
           type="radio"
           name="genero_empleado"
+          value="Femenino"
           id="Femenino" />
         <label class="form-check-label" for="Femenino"> Femenino </label>
       </div>
@@ -75,6 +77,7 @@
           class="form-check-input"
           type="radio"
           name="genero_empleado"
+          value="Otro"
           id="Otro" />
         <label class="form-check-label" for="Otro"> Otro </label>
       </div>
@@ -106,5 +109,5 @@
   </form>
 </div>
 
-<a href="{% url 'listar_empleados' %}" id="bottomRightButton"> Empleado </a>
+<a href="{% url 'listar_empleados' %}" id="bottomRightButton"> Empleados </a>
 {% endblock %}
