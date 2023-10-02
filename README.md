@@ -46,18 +46,26 @@
         Nota: para instalar Django en una version especifica
         pip install Django==4.2.4
 
-8.  Crear el archivo requirements.txt para tener todos los paquetes del proyecto a la mano
+8.  Crear el proyecto con Djando
+
+        `django-admin startproject project_core .`
+        El punto . es crucial le dice al script que instale Django en el directorio actual
+
+        Ya en este punto se puede correr el proyecto que a creado Django,
+        python manage.py runserver
+
+9.  Crear el archivo requirements.txt para tener todos los paquetes del proyecto a la mano
 
         pip freeze > requirements.txt
 
         Nota: para instalar los paquetes solo basta ejecutar
         pip install -r requirements.txt
 
-9.  Crear mi primera aplicación en Django
+10. Crear mi primera aplicación en Django
 
-        python manage.py startapp empleados
+    python manage.py startapp empleados
 
-10. Instalar nuestra aplicación (empleados) ya creada en el proyecto
+11. Instalar nuestra aplicación (empleados) ya creada en el proyecto
 
         archivo settings.py
         INSTALLED_APPS = [
@@ -65,7 +73,7 @@
         'empleados',
         ]
 
-11. Crear una clase en models.py la cual reprtesentara mi tabla en BD,(bd_django) preferiblemente los modelos
+12. Crear una clase en models.py la cual reprtesentara mi tabla en BD,(bd_django) preferiblemente los modelos
     se declaran en singular
 
         class Empleado(models.Model):
@@ -81,17 +89,17 @@
                 created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
                 updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-12. crear la Base de Datos (bd_django_mysql) en MySQL
+13. crear la Base de Datos (bd_django_mysql) en MySQL
 
-13. Crear las migraciones que estan en mi modelo
+14. Crear las migraciones que estan en mi modelo
 
         python manage.py makemigrations empleados
 
-14. Correr migraciones
+15. Correr migraciones
 
         python manage.py migrate
 
-15. Editar el archivo settings.py del proyecto, cambiando los parametros de conexión a MySQL
+16. Editar el archivo settings.py del proyecto, cambiando los parametros de conexión a MySQL
 
         `
         DATABASES = {
@@ -106,7 +114,7 @@
         }
         `
 
-16. Crear el archivo urls.py en la aplicación (bd_django_mysql)
+17. Crear el archivo urls.py en la aplicación (bd_django_mysql)
     from django.urls import path
     from . import views
 
@@ -117,7 +125,7 @@
                 path('empleados/', views.listar_empleados, name='listar_empleados'),
         ]
 
-17. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
+18. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
     from django.urls import path, include
 
         urlpatterns = [
@@ -125,19 +133,19 @@
                 path('libros/', include('empleados.urls')),
         ]
 
-18. Crear las migraciones y correrlas
+19. Crear las migraciones y correrlas
 
         python manage.py makemigrations -> Creando migraciones
         python manage.py migrate         -> Correr migraciones
 
-19. Revisar la consola y visitar la URL http://127.0.0.1:8000
+20. Revisar la consola y visitar la URL http://127.0.0.1:8000
 
-20. Crear la carpeta 'templates' dentro de la aplicación donde estarán mis archivos.html
+21. Crear la carpeta 'templates' dentro de la aplicación donde estarán mis archivos.html
 
-21. Crear la carpeta 'static' dentro de mi aplicacion, aqui estaran archivos
+22. Crear la carpeta 'static' dentro de mi aplicacion, aqui estaran archivos
     estaticos (css, js, imagenes, etc..)
 
-22. Correr archivo requirement.txt
+23. Correr archivo requirement.txt
     pip install -r requirements.txt
 
 #### Resultado final
