@@ -39,14 +39,7 @@
         https://pypi.org/project/Pillow/
         pip install Pillow
 
-7.  Instalar Djando desde el manejador de paquete de Python Pip, ya dentro del entorno virtual.
-
-        python -m pip install Django
-        pip install Django
-        Nota: para instalar Django en una version especifica
-        pip install Django==4.2.4
-
-8.  Crear el proyecto con Djando
+7.  Crear el proyecto con Djando
 
         `django-admin startproject project_core .`
         El punto . es crucial le dice al script que instale Django en el directorio actual
@@ -54,18 +47,11 @@
         Ya en este punto se puede correr el proyecto que a creado Django,
         python manage.py runserver
 
-9.  Crear el archivo requirements.txt para tener todos los paquetes del proyecto a la mano
-
-        pip freeze > requirements.txt
-
-        Nota: para instalar los paquetes solo basta ejecutar
-        pip install -r requirements.txt
-
-10. Crear mi primera aplicación en Django
+8.  Crear mi primera aplicación en Django
 
         python manage.py startapp empleados
 
-11. Instalar nuestra aplicación (empleados) ya creada en el proyecto
+9.  Instalar nuestra aplicación (empleados) ya creada en el proyecto, en el archivo settings.py
 
         archivo settings.py
         INSTALLED_APPS = [
@@ -73,7 +59,7 @@
         'empleados',
         ]
 
-12. Crear una clase en models.py la cual reprtesentara mi tabla en BD,(bd_django) preferiblemente los modelos
+10. Crear una clase en models.py la cual reprtesentara mi tabla en BD,(bd_django) preferiblemente los modelos
     se declaran en singular
 
         class Empleado(models.Model):
@@ -89,9 +75,9 @@
                 created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
                 updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-13. crear la Base de Datos (bd_django_mysql) en MySQL
+11. crear la Base de Datos (bd_django_mysql) en MySQL
 
-14. Editar el archivo settings.py del proyecto, cambiando los parametros de conexión a MySQL
+12. Editar el archivo settings.py del proyecto, cambiando los parametros de conexión a MySQL
 
         `
         DATABASES = {
@@ -106,15 +92,17 @@
         }
         `
 
-15. Crear las migraciones que estan en mi modelo
+13. Crear las migraciones y correrlas
 
-        python manage.py makemigrations empleados
+        python manage.py makemigrations -> Creando migraciones
+        python manage.py migrate         -> Correr migraciones
 
-16. Correr migraciones
+14. Correr el proyecto
 
-        python manage.py migrate
+        python manage.py runserver
+        Revisar la consola y visitar la URL http://127.0.0.1:8000
 
-17. Crear el archivo urls.py en la aplicación (bd_django_mysql)
+15. Crear el archivo urls.py en la aplicación (bd_django_mysql)
 
         from django.urls import path
         from . import views
@@ -126,28 +114,30 @@
                         path('empleados/', views.listar_empleados, name='listar_empleados'),
                 ]
 
-18. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
+16. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
     from django.urls import path, include
 
         urlpatterns = [
                 path('admin/', admin.site.urls),
-                path('libros/', include('empleados.urls')),
+                path("", include('empleados.urls'))
         ]
 
-19. Crear las migraciones y correrlas
+17. Crear la carpeta 'templates' dentro de la aplicación donde estarán mis archivos.html
 
-        python manage.py makemigrations -> Creando migraciones
-        python manage.py migrate         -> Correr migraciones
-
-20. Revisar la consola y visitar la URL http://127.0.0.1:8000
-
-21. Crear la carpeta 'templates' dentro de la aplicación donde estarán mis archivos.html
-
-22. Crear la carpeta 'static' dentro de mi aplicacion, aqui estaran archivos
+18. Crear la carpeta 'static' dentro de mi aplicacion, aqui estaran archivos
     estaticos (css, js, imagenes, etc..)
 
-23. Correr archivo requirement.txt
+19. Crear la carpeta media, para almacenar las imagenes del empleado
 
+20. Correr archivo requirement.txt
+
+        pip install -r requirements.txt
+
+21. Crear el archivo requirements.txt para tener todos los paquetes del proyecto a la mano
+
+        pip freeze > requirements.txt
+
+        Nota: para instalar los paquetes solo basta ejecutar
         pip install -r requirements.txt
 
 #### Resultado final
