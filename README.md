@@ -63,7 +63,7 @@
 
 10. Crear mi primera aplicación en Django
 
-    python manage.py startapp empleados
+        python manage.py startapp empleados
 
 11. Instalar nuestra aplicación (empleados) ya creada en el proyecto
 
@@ -91,15 +91,7 @@
 
 13. crear la Base de Datos (bd_django_mysql) en MySQL
 
-14. Crear las migraciones que estan en mi modelo
-
-        python manage.py makemigrations empleados
-
-15. Correr migraciones
-
-        python manage.py migrate
-
-16. Editar el archivo settings.py del proyecto, cambiando los parametros de conexión a MySQL
+14. Editar el archivo settings.py del proyecto, cambiando los parametros de conexión a MySQL
 
         `
         DATABASES = {
@@ -114,16 +106,25 @@
         }
         `
 
-17. Crear el archivo urls.py en la aplicación (bd_django_mysql)
-    from django.urls import path
-    from . import views
+15. Crear las migraciones que estan en mi modelo
 
-        urlpatterns = [
-                path('', views.inicio, name='inicio'),
-                path('registrar_empleado/', views.registrar_empleado,
-                        name='registrar_empleado'),
-                path('empleados/', views.listar_empleados, name='listar_empleados'),
-        ]
+        python manage.py makemigrations empleados
+
+16. Correr migraciones
+
+        python manage.py migrate
+
+17. Crear el archivo urls.py en la aplicación (bd_django_mysql)
+
+        from django.urls import path
+        from . import views
+
+                urlpatterns = [
+                        path('', views.inicio, name='inicio'),
+                        path('registrar_empleado/', views.registrar_empleado,
+                                name='registrar_empleado'),
+                        path('empleados/', views.listar_empleados, name='listar_empleados'),
+                ]
 
 18. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
     from django.urls import path, include
@@ -146,7 +147,8 @@
     estaticos (css, js, imagenes, etc..)
 
 23. Correr archivo requirement.txt
-    pip install -r requirements.txt
+
+        pip install -r requirements.txt
 
 #### Resultado final
 
