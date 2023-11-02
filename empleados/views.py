@@ -41,7 +41,7 @@ def registrar_empleado(request):
         return redirect('listar_empleados')
 
     # Si no se ha enviado el formulario, simplemente renderiza la plantilla con el formulario vacío
-    return render(request, 'formulario_libro.html', data)
+    return render(request, 'form_empleado.html', data)
 
 
 def listar_empleados(request):
