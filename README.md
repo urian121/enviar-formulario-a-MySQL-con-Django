@@ -59,7 +59,7 @@
         'empleados',
         ]
 
-10. Crear una clase en models.py la cual reprtesentara mi tabla en BD,(bd_django) preferiblemente los modelos
+10. Crear una clase en models.py la cual representará mi tabla en BD,(bd_django) preferiblemente los modelos
     se declaran en singular
 
         class Empleado(models.Model):
